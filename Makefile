@@ -1,49 +1,39 @@
+# Main Makefile - Builds all assignments
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c99 -g
-TARGET1 = multiple_forks
-TARGET2 = enhanced_forks
-TARGET3 = process_tree
-TARGET4 = simple_fork_exec
-TARGET5 = multiple_fork_exec
-SOURCE1 = multiple_forks.c
-SOURCE2 = enhanced_forks.c
-SOURCE3 = process_tree.c
-SOURCE4 = simple_fork_exec.c
-SOURCE5 = multiple_fork_exec.c
 
-all: $(TARGET1) $(TARGET2) $(TARGET3) $(TARGET4) $(TARGET5)
+# Assignment directories
+ASSIGNMENT0 = assignment0
+ASSIGNMENT1 = assignment1
+ASSIGNMENT2 = assignment2
 
-$(TARGET1): $(SOURCE1)
-	$(CC) $(CFLAGS) -o $(TARGET1) $(SOURCE1)
+all: assignment0 assignment1 assignment2
 
-$(TARGET2): $(SOURCE2)
-	$(CC) $(CFLAGS) -o $(TARGET2) $(SOURCE2)
+assignment0:
+	$(MAKE) -C $(ASSIGNMENT0) all
 
-$(TARGET3): $(SOURCE3)
-	$(CC) $(CFLAGS) -o $(TARGET3) $(SOURCE3)
+assignment1:
+	$(MAKE) -C $(ASSIGNMENT1) all
 
-$(TARGET4): $(SOURCE4)
-	$(CC) $(CFLAGS) -o $(TARGET4) $(SOURCE4)
-
-$(TARGET5): $(SOURCE5)
-	$(CC) $(CFLAGS) -o $(TARGET5) $(SOURCE5)
+assignment2:
+	$(MAKE) -C $(ASSIGNMENT2) all
 
 clean:
-	rm -f $(TARGET1) $(TARGET2) $(TARGET3) $(TARGET4) $(TARGET5)
+	$(MAKE) -C $(ASSIGNMENT0) clean
+	$(MAKE) -C $(ASSIGNMENT1) clean
+	$(MAKE) -C $(ASSIGNMENT2) clean
 
-run: $(TARGET1)
-	./$(TARGET1)
+# Run specific assignments
+run-assignment0:
+	$(MAKE) -C $(ASSIGNMENT0) run
 
-run-enhanced: $(TARGET2)
-	./$(TARGET2)
+run-assignment1:
+	$(MAKE) -C $(ASSIGNMENT1) run
 
-run-tree: $(TARGET3)
-	./$(TARGET3)
+run-assignment2:
+	$(MAKE) -C $(ASSIGNMENT2) run
 
-run-simple-exec: $(TARGET4)
-	./$(TARGET4)
+# Run all assignments
+run-all: run-assignment0 run-assignment1 run-assignment2
 
-run-multiple-exec: $(TARGET5)
-	./$(TARGET5)
-
-.PHONY: all clean run run-enhanced run-tree run-simple-exec run-multiple-exec
+.PHONY: all assignment0 assignment1 assignment2 clean run-assignment0 run-assignment1 run-assignment2 run-all
