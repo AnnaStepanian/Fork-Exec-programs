@@ -1,0 +1,7 @@
+This is a sample text file for testing.
+The main function is the entry point of a C program.
+Here we have some random text.
+The main process will search for this word.
+Another line without the target word.
+Main is case sensitive in this example.
+Final line of the test file.

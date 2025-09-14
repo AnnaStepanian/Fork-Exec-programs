@@ -16,7 +16,7 @@ int main()
     }
     
     if (pid == 0) {
-        execl("/bin/ls", "ls", "-l", (char *)NULL);
+        execl("/bin/echo", "echo", "Hello from the child process", (char *)NULL);
         perror("execl failed");
         exit(1);
     } else {

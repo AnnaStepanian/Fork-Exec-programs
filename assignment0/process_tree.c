@@ -12,8 +12,7 @@ void print_tree_level(int level) {
 
 int main() 
 { 
-    printf("=== Process Tree Visualization ===\n");
-    printf("This program demonstrates the binary tree structure created by multiple forks\n\n");
+    printf("=== Process Tree Visualization ===\n\n");
     
     pid_t original_pid = getpid();
     printf("Original process: PID %d\n", original_pid);
@@ -105,7 +104,6 @@ int main()
     
     // Only original parent waits
     if (getpid() == original_pid) {
-        printf("\n--- Waiting for all children ---\n");
         int status;
         int child_count = 0;
         
@@ -124,9 +122,6 @@ int main()
         printf("  Level 2: 4 processes (2 parents + 2 children)\n");
         printf("  Level 3: 8 processes (4 parents + 4 children)\n");
         printf("\nFormula: 2^n processes after n fork() calls\n");
-    } else {
-        // Child processes finish
-        printf("Child process %d finishing...\n", getpid());
     }
     
     return 0; 

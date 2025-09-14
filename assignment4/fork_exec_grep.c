@@ -1,27 +1,25 @@
 #include <stdio.h>
-#include <sys/types.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
-#include <stdlib.h>
 
-int main() 
-{
+int main() {
     pid_t pid;
     
     pid = fork();
     
     if (pid < 0) {
-        perror("Fork failed");
+        perror("fork failed");
         exit(1);
     }
-    
-    if (pid == 0) {
-        execl("/bin/ls", "ls", "-l", (char *)NULL);
+    else if (pid == 0) {
+        execl("/usr/bin/grep", "grep", "main", "test.txt", (char *)NULL);
         perror("execl failed");
         exit(1);
-    } else {
+    }
+    else {
         wait(NULL);
-        printf("Parent process done\n");
+        printf("Parent process completed\n");
     }
     
     return 0;

@@ -22,7 +22,7 @@ int main()
     
     printf("=== Enhanced Multiple Fork Analysis ===\n");
     printf("Original process - PID: %d, PPID: %d\n", getpid(), getppid());
-    printf("Starting with 1 process\n\n");
+    printf("\n");
     
     // First fork
     printf("--- FORK 1 ---\n");
@@ -42,7 +42,7 @@ int main()
     } else {
         print_process_info("Parent after fork 1");
     }
-    printf("Now we have 2 processes\n\n");
+    printf("\n");
     
     // Second fork
     printf("--- FORK 2 ---\n");
@@ -61,7 +61,7 @@ int main()
     } else {
         print_process_info("Parent after fork 2");
     }
-    printf("Now we have 4 processes\n\n");
+    printf("\n");
     
     // Third fork
     printf("--- FORK 3 ---\n");
@@ -80,7 +80,7 @@ int main()
     } else {
         print_process_info("Parent after fork 3");
     }
-    printf("Now we have 8 processes\n\n");
+    printf("\n");
     
     // Only the original parent process should wait for children
     if (getpid() == original_pid) {
@@ -108,9 +108,6 @@ int main()
         printf("  After fork 3: 8 processes (4 parents + 4 children)\n");
         printf("\nFormula: 2^n processes after n fork() calls\n");
         printf("In this case: 2^3 = 8 processes\n");
-    } else {
-        // Child processes
-        printf("Child process (PID: %d) finishing...\n", getpid());
     }
     
     return 0; 
